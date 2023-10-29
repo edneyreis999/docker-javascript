@@ -1,0 +1,27 @@
+{
+  "name": "docker-javascript",
+  "version": "1.0.0",
+  "description": "Challenge from full cycle course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edneyreis999/docker-javascript.git"
+  },
+  "author": "Edney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edneyreis999/docker-javascript/issues"
+  },
+  "homepage": "https://github.com/edneyreis999/docker-javascript#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.23"
+  }
+}

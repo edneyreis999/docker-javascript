@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  node:
+    image: edneyreis999/node
+    container_name: node-express-server
+    entrypoint: ./start.sh
+    build:
+      context: node
+    networks:
+      - nodenet
+    expose:
+      - 3000
+    volumes:
+      - ./node:/usr/src/app
+    tty: true
+    depends_on:
+      - db
+  
+  nginx:
+    image: edneyreis999/nginx
+    build:
+      context: nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - nodenet
+    ports:
+      - 8080:80
+    depends_on:
+      - node
+
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db-mysql
+    restart: always
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - nodenet
+
+networks:
+  nodenet:
+    driver: bridge
