@@ -26,7 +26,17 @@ const initDatabase = () => {
         connection.end();
         return;
       }
-      console.log('Tabela criada com sucesso');
+
+      console.log('Tabela criada com sucesso', results);
+
+      insertData('Edney-default')
+        .then((results) => {
+          console.log('Registro inserido com sucesso:', results);
+        })
+        .catch((error) => {
+          console.error('Erro ao inserir registro:', error);
+        })
+
     });
   });
 }
@@ -45,16 +55,6 @@ const insertData = (name) => {
     });
   });
 };
-
-insertData('Edney-default')
-.then((results) => {
-  console.log('Registro inserido com sucesso:', results);
-})
-.catch((error) => {
-  console.error('Erro ao inserir registro:', error);
-})
-
-
 
 app.get('/', (req, res) => {
   const query = "SELECT * FROM people";
